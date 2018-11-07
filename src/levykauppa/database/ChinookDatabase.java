@@ -18,5 +18,21 @@ public class ChinookDatabase {
 		}
 	}
 
-
+	public void close(ResultSet results, PreparedStatement statement, Connection connection) {
+		try {
+			results.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+}
+	}
 }

@@ -11,26 +11,32 @@ import levykauppa.database.ChinookDatabase;
 import levykauppa.models.Artist;
 
 public class ArtistDao {
+	
+	private ChinookDatabase db;
+	
+	public ArtistDao(ChinookDatabase db) {
+		this.db = db;
+	}
 
-	public List<Artist> getAllArtist() {
-		ArrayList<Artist> list = new ArrayList<>();
+	public List<Artist> getAllArtists() {
 		
-		ChinookDatabase db = new ChinookDatabase();
-		Connection conn = db.connect();
+		Connection connection = db.connect();
 		PreparedStatement statement = null;
 		ResultSet results = null;
+		ArrayList<Artist> list = new ArrayList();
 		
 		try {
-			statement = conn.prepareStatement("SELECT * FROM Artist ORDER BY Artist;");
-			results = statement.executeQuery();
-		} catch (SQLException e) {
-			
+		statement = connection.prepareStatement("SELECT * FROM Artist;");
+		results = statement.executeQuery();
+		
+			while(results.next()) {
+				long id = results.getLong("ArtistId");
+				String name = results.getString("Title");
+				list.add(new Artist(id, name));
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return list;
 	}
-	
-	
-	
-	
-	
 }
