@@ -1,10 +1,6 @@
 package levykauppa.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,19 +13,21 @@ import levykauppa.dao.ArtistDao;
 import levykauppa.database.ChinookDatabase;
 import levykauppa.models.Artist;
 
-@WebServlet("/artists")
-public class ArtistListServlet extends HttpServlet {
+@WebServlet("/artist")
+public class ArtistServlet extends HttpServlet {
+
     private ArtistDao artistDao = new ArtistDao(new ChinookDatabase());
 
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        long id = Long.parseLong(req.getParameter("id"));
 
-        List<Artist> artists = artistDao.getAllArtists();
+        Artist a = artistDao.findArtist(id);
+        // resp.getWriter().println(a.getName());
 
-        req.setAttribute("artists", artists);
+        req.setAttribute("artist", a);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/artistList.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/artist.jsp");
         dispatcher.include(req, resp);
-
     }
 }

@@ -18,21 +18,27 @@ public class ChinookDatabase {
 		}
 	}
 
-	public void close(ResultSet results, PreparedStatement statement, Connection connection) {
-		try {
-			results.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		try {
-			statement.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-}
+	 public void close(ResultSet results, PreparedStatement statement, Connection conn) {
+	        try {
+	            if (results != null) {
+	                results.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        try {
+	            if (statement != null) {
+	                statement.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        try {
+	            if (conn != null) {
+	                conn.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
 	}
-}
