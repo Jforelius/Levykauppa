@@ -57,6 +57,7 @@ public class ArtistDao {
                 String name = results.getString("Name");
                 list.add(new Artist(id, name));
             }
+            
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {

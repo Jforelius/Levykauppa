@@ -11,6 +11,14 @@ public class Album {
 		this.artistid = artistid;
 	}
 	
+	public long getId() {
+		return id;
+	}
+	
+	public long getArtistId() {
+		return artistid;
+	}
+	
 	public String getAlbum() {
 		return title;
 	}

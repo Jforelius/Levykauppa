@@ -23,11 +23,11 @@ public class ArtistServlet extends HttpServlet {
         long id = Long.parseLong(req.getParameter("id"));
 
         Artist a = artistDao.findArtist(id);
-        // resp.getWriter().println(a.getName());
+        
 
         req.setAttribute("artist", a);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/artist.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/Artist.jsp");
         dispatcher.include(req, resp);
     }
 }

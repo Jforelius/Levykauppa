@@ -28,7 +28,7 @@ public class ArtistListServlet extends HttpServlet {
 
         req.setAttribute("artists", artists);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/artistList.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/ArtistList.jsp");
         dispatcher.include(req, resp);
 
     }
