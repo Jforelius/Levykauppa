@@ -19,7 +19,7 @@ public class Album {
 		return artistid;
 	}
 	
-	public String getAlbum() {
+	public String getTitle() {
 		return title;
 	}
 	
